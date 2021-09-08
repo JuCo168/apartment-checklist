@@ -20,7 +20,7 @@ public class TenantsService {
     }
     
     public Tenants addTenant(Tenants tenant) {
-        tenant.setName(UUID.randomUUID().toString());
+        // tenant.setName(UUID.randomUUID().toString());
         return tenantsRepo.save(tenant);
     }
 
@@ -37,7 +37,7 @@ public class TenantsService {
         .orElseThrow(() -> new TenantNotFoundException ("Tenant " + name + " does not exist"));
     }
 
-    public void removeTenant(String name) {
+    public void deleteTenant(String name) {
         tenantsRepo.deleteTenantsByName(name);
     }
 }

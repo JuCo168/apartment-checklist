@@ -11,7 +11,7 @@ import javax.persistence.Id;
 @Entity
 public class Tenants implements Serializable{
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    // @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(length = 20)
     private String name;
     private String email;
