@@ -49,7 +49,7 @@ public class TenantsResource {
         return new ResponseEntity<>(updateTenant, HttpStatus.CREATED);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/delete/{name}")
     public ResponseEntity<?> deleteTenant(@PathVariable("name") String name) {
         tenantsService.deleteTenant(name); 
         return new ResponseEntity<>(HttpStatus.OK);

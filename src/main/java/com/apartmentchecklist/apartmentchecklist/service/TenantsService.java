@@ -20,7 +20,6 @@ public class TenantsService {
     }
     
     public Tenants addTenant(Tenants tenant) {
-        // tenant.setName(UUID.randomUUID().toString());
         return tenantsRepo.save(tenant);
     }
 
