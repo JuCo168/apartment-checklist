@@ -20,3 +20,5 @@ I want to include a feature that splits cost among any number of tenants to easi
 [Angular Tutorial for Beginners: Learn Angular & TypeScript](https://www.youtube.com/watch?v=k5E2AVpwsko)
 
 [Spring Boot Full Stack with Angular | Full Course [2021] [NEW]](https://www.youtube.com/watch?v=Gx4iBLKLVHk)
+
+[HTML and CSS taken from bootdey.com](https://www.bootdey.com/snippets/view/Contacts-page)
