@@ -13,6 +13,15 @@ public class Tenants implements Serializable{
     private String name;
     private String email;
     private String phone;
+    private String imageUrl;
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
 
     public Tenants() {}
     
