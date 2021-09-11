@@ -5,7 +5,7 @@
             <div class="card-header align-items-center px-3 px-md-5">
                 <h2>Contacts</h2>
 
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-add-contact">Add Contact</button>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-add-contact">Add Tenant</button>
             </div>
 
             <div class="card-body px-3 px-md-5">
@@ -13,7 +13,7 @@
                     <div *ngFor="let tenant of tenants" class="col-lg-6 col-xl-4 col-md-6 col-sm-12">
                         <div class="card card-default p-4">
                             <a href="javascript:0" class="media text-secondary" data-toggle="modal" data-target="#modal-contact">
-                                <img src="https://i.redd.it/fta9wiukhlm71.png" class="mr-3 img-fluid rounded" alt="Avatar Image" />
+                                <img src="{{ tenant?.imageUrl }}" class="mr-3 img-fluid rounded" alt="Avatar Image" />
 
                                 <div class="media-body">
                                     <h5 class="mt-0 mb-2 text-dark">{{ tenant.name }}</h5>
