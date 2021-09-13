@@ -1,7 +1,6 @@
 package com.apartmentchecklist.apartmentchecklist.service;
 
 import java.util.List;
-import java.util.UUID;
 
 import com.apartmentchecklist.apartmentchecklist.exception.TenantNotFoundException;
 import com.apartmentchecklist.apartmentchecklist.model.Tenants;

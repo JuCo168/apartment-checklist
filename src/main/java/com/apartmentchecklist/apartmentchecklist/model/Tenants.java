@@ -15,14 +15,6 @@ public class Tenants implements Serializable{
     private String phone;
     private String imageUrl;
 
-    public String getImageUrl() {
-        return imageUrl;
-    }
-
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
-    }
-
     public Tenants() {}
     
     public Tenants(String name, String email, String phone) {
@@ -53,6 +45,14 @@ public class Tenants implements Serializable{
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     @Override

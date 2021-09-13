@@ -1,27 +1,35 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/5.3.45/css/materialdesignicons.css" integrity="sha256-NAxhqDvtY0l4xn+YVa6WjAcmd94NNfttjNsDmNatFVc=" crossorigin="anonymous" />
-<div class="container">
+<div class="container" id="tenants-page">
     <div class="content contact-list">
         <div class="card card-default">
-            <div class="card-header align-items-center px-3 px-md-5">
-                <h2>Contacts</h2>
-
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-add-contact">Add Tenant</button>
+          <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" style="color:white;">Apartment Checklist</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarColor02">
+               <ul class="navbar-nav mr-auto">
+                  <li class="nav-item active">
+                     <a class="nav-link" (click)="onOpenModal(null, 'add')">Add Tenant<span class="sr-only">(current)</span></a>
+                  </li>
+               </ul>
+               <form class="form-inline my-2 my-lg-0">
+                  <!-- <input type="search" (ngModelChange)="(key.value)" #key="ngModel" ngModel -->
+                   <!-- name="key" id="searchName" class="form-control mr-sm-2" placeholder="Search employees..." required> -->
+               </form>
             </div>
+          </nav>
 
             <div class="card-body px-3 px-md-5">
                 <div class="row">
                     <div *ngFor="let tenant of tenants" class="col-lg-6 col-xl-4 col-md-6 col-sm-12">
                         <div class="card card-default p-4">
-                            <a href="javascript:0" class="media text-secondary" data-toggle="modal" data-target="#modal-contact">
+                            <a href="javascript:0" class="media text-secondary" (click)="onOpenModal(tenant, 'edit')" data-toggle="modal" data-target="#modal-tenant">
                                 <img src="{{ tenant?.imageUrl }}" class="mr-3 img-fluid rounded" alt="Avatar Image" />
 
                                 <div class="media-body">
                                     <h5 class="mt-0 mb-2 text-dark">{{ tenant.name }}</h5>
                                     <ul class="list-unstyled text-smoke">
-                                        <!-- <li class="d-flex">
-                                            <i class="mdi mdi-map mr-1"></i>
-                                            <span>Nulla vel metus 15/178</span>
-                                        </li> -->
                                         <li class="d-flex">
                                             <i class="mdi mdi-email mr-1"></i>
                                             <span>{{ tenant?.email }}</span>
@@ -40,11 +48,15 @@
         </div>
 
         <!-- Contact Modal -->
-        <div class="modal fade" id="modal-contact" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="modal-tenant" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                 <div class="modal-content">
+                  <form #editForm="ngForm" (ngSubmit)="onUpdateTenant(editForm.value)">
                     <div class="modal-header justify-content-end border-bottom-0">
-                        <button type="button" class="btn-edit-icon" data-dismiss="modal" aria-label="Close">
+                      <button (click)="onUpdateTenant(editForm.value)" data-dismiss="modal" class="btn btn-primary" >Save changes</button>
+                      <button (click)="onDeleteTenant(tenant?.name!)" data-dismiss="modal" class="btn btn-danger" >Delete</button>
+                      <button class="btn btn-secondary tooltips" data-placement="top" data-dismiss="modal" aria-label="Close"><i class="fa fa-times"></i></button>
+                        <!-- <button (click)="onUpdateTenant(editForm.value)" type="button" class="btn-edit-icon" data-dismiss="modal" aria-label="Close">
                             <i class="mdi mdi-pencil"></i>
                         </button>
 
@@ -62,7 +74,7 @@
 
                         <button type="button" class="btn-close-icon" data-dismiss="modal" aria-label="Close">
                             <i class="mdi mdi-close"></i>
-                        </button>
+                        </button> -->
                     </div>
 
                     <div class="modal-body pt-0">
@@ -71,17 +83,18 @@
                                 <div class="profile-content-left px-4">
                                     <div class="card text-center px-0 border-0">
                                         <div class="card-img mx-auto">
-                                            <img class="rounded-circle" src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="user image" />
+                                          <img class="rounded-circle" src="{{ tenant?.imageUrl }}" alt="user image" />
                                         </div>
 
                                         <div class="card-body">
-                                            <h4 class="py-2">Albrecht Straub</h4>
-                                            <p>Albrecht.straub@gmail.com</p>
-                                            <a class="btn btn-primary btn-pill btn-lg my-4" href="javascript:void(0)">Follow</a>
+                                          <input type="hidden" ngModel="{{ tenant?.name }}" class="form-control" ngModel name="name" id="name" value="{{ tenant?.name }}" />
+                                          <h4 class="py-2">{{ tenant?.name }}</h4>
+                                          <!-- <p>{{ tenant?.email }}</p> -->
+                                          <!-- <a class="btn btn-primary btn-pill btn-lg my-4" href="javascript:void(0)">Follow</a> -->
                                         </div>
                                     </div>
 
-                                    <div class="d-flex justify-content-between">
+                                    <!-- <div class="d-flex justify-content-between">
                                         <div class="text-center pb-4">
                                             <h6 class="pb-2">1503</h6>
                                             <p>Friends</p>
@@ -96,96 +109,89 @@
                                             <h6 class="pb-2">1200</h6>
                                             <p>Following</p>
                                         </div>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
 
                             <div class="col-md-6">
                                 <div class="contact-info px-4">
                                     <h4 class="mb-1">Contact Details</h4>
-                                    <p class="text-dark font-weight-medium pt-4 mb-2">Email address</p>
-                                    <p>Albrecht.straub@gmail.com</p>
+                                      <div class="form-group mb-4">
+                                        <label for="email">Email</label>
+                                        <input type="email" ngModel="{{ tenant?.email }}" class="form-control" ngModel name="email" id="email" value="{{ tenant?.email }}" />
+                                      </div>
+                                      <div class="form-group mb-4">
+                                        <label for="phone">Phone</label>
+                                        <input type="text" ngModel="{{ tenant?.phone }}" class="form-control" ngModel name="phone" id="phone" value="{{ tenant?.phone }}" />
+                                      </div>
+                                      <div class="form-group mb-4">
+                                        <label for="imageUrl">Image URL</label>
+                                        <input type="text" ngModel="{{ tenant?.imageUrl }}"class="form-control" ngModel name="imageUrl" id="imageUrl" value="{{ tenant?.imageUrl }}" />
+                                      </div>
+                                    <!-- <p class="text-dark font-weight-medium pt-4 mb-2">Email address</p>
+                                    <p>{{ tenant?.email }}</p>
                                     <p class="text-dark font-weight-medium pt-4 mb-2">Phone Number</p>
-                                    <p>+99 9539 2641 31</p>
-                                    <p class="text-dark font-weight-medium pt-4 mb-2">Birthday</p>
-                                    <p>Nov 15, 1990</p>
-                                    <p class="text-dark font-weight-medium pt-4 mb-2">Event</p>
-                                    <p>Lorem, ipsum dolor</p>
+                                    <p>{{ tenant?.phone }}</p> -->
                                 </div>
                             </div>
                         </div>
                     </div>
+                  </form>
                 </div>
             </div>
         </div>
 
         <!-- Add Contact Button  -->
-        <div class="modal fade" id="modal-add-contact" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal fade" id="modal-add-tenant" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                 <div class="modal-content">
-                    <form>
+                    <form #addForm="ngForm" (ngSubmit)="onAddTenant(addForm)">
                         <div class="modal-header px-4">
                             <h5 class="modal-title" id="exampleModalCenterTitle">Create New Contact</h5>
                         </div>
                         <div class="modal-body px-4">
                             <div class="form-group row mb-6">
-                                <label for="coverImage" class="col-sm-4 col-lg-2 col-form-label">User Image</label>
+                                <label for="imageUrl" class="col-sm-4 col-lg-2 col-form-label">User Image</label>
                                 <div class="col-sm-8 col-lg-10">
-                                    <div class="custom-file mb-1">
+                                  <div class="form-group">
+                                    <!-- <label for="coverImage">Cover Image</label> -->
+                                    <input type="text" class="form-control" ngModel name="imageUrl" id="imageUrl" placeholder="Image URL" required/>
+                                  </div>  
+                                  <!-- <div class="custom-file mb-1">
                                         <input type="file" class="custom-file-input" id="coverImage" required="" />
                                         <label class="custom-file-label" for="coverImage">Choose file...</label>
                                         <div class="invalid-feedback">Example invalid custom file feedback</div>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
 
                             <div class="row mb-2">
-                                <div class="col-lg-6">
+                                <div class="col-lg-12">
                                     <div class="form-group">
-                                        <label for="firstName">First name</label>
-                                        <input type="text" class="form-control" id="firstName" value="Albrecht" />
+                                        <label for="name">Name</label>
+                                        <input type="text" class="form-control" ngModel name="name" id="name" placeholder="Name" required/>
                                     </div>
                                 </div>
 
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <label for="lastName">Last name</label>
-                                        <input type="text" class="form-control" id="lastName" value="Straub" />
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-6">
-                                    <div class="form-group mb-4">
-                                        <label for="userName">User name</label>
-                                        <input type="text" class="form-control" id="userName" value="Doe" />
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-6">
+                                <div class="col-lg-12">
                                     <div class="form-group mb-4">
                                         <label for="email">Email</label>
-                                        <input type="email" class="form-control" id="email" value="albrecht.straub@gmail.com" />
+                                        <input type="email" class="form-control" ngModel name="email" id="email" placeholder="Email" />
                                     </div>
                                 </div>
 
-                                <div class="col-lg-6">
+                                <div class="col-lg-12">
                                     <div class="form-group mb-4">
-                                        <label for="Birthday">Birthday</label>
-                                        <input type="text" class="form-control" id="Birthday" value="01-10-1993" />
+                                        <label for="phone">Phone</label>
+                                        <input type="text" class="form-control" ngModel name="phone" id="Birthday" placeholder="Phone" />
                                     </div>
                                 </div>
 
-                                <div class="col-lg-6">
-                                    <div class="form-group mb-4">
-                                        <label for="event">Event</label>
-                                        <input type="text" class="form-control" id="event" value="Some value for event" />
-                                    </div>
-                                </div>
                             </div>
                         </div>
                         <div class="modal-footer px-4">
-                            <button type="button" class="btn btn-smoke btn-pill" data-dismiss="modal">Cancel</button>
-                            <button type="button" class="btn btn-primary btn-pill">Save Contact</button>
+                            <button type="button" id="add-tenant-close" class="btn btn-smoke btn-pill" data-dismiss="modal">Cancel</button>
+                            <button [disabled]="addForm.invalid" type="submit" class="btn btn-primary btn-pill">Save Tenant</button>
                         </div>
                     </form>
                 </div>
