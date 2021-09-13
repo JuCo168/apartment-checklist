@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Tenants } from './tenants';
 import { HttpErrorResponse } from '@angular/common/http';
 import { NgForm } from '@angular/forms';
+import { keyframes } from '@angular/animations';
 
 @Component({
   selector: 'app-root',
@@ -94,5 +95,18 @@ export class AppComponent implements OnInit{
         alert(error.message )
       }
     );
+  }
+
+  public searchTenant(name: string): void {
+    const matches: Tenants[] = [];
+    for(const tenant of this.tenants) {
+      if(tenant.name.toLowerCase().indexOf(name.toLowerCase()) !== -1) {
+        matches.push(tenant);
+      }
+    }
+    this.tenants = matches;
+    if(matches.length === 0 || !name) {
+      this.getTenants();
+    }
   }
 }
