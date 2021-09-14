@@ -4,19 +4,30 @@
         <div class="card card-default">
           <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <a class="navbar-brand" style="color:white;">Apartment Checklist</a>
+            
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+            <!-- <span class="navbar-toggler-icon"></span> -->
             </button>
             <div class="collapse navbar-collapse" id="navbarColor02">
-               <ul class="navbar-nav mr-auto">
-                  <li class="nav-item active">
-                     <a class="nav-link" (click)="onOpenModal(null, 'add')">Add Tenant<span class="sr-only">(current)</span></a>
-                  </li>
-               </ul>
-               <form class="form-inline my-2 my-lg-0">
-                  <input type="search" (ngModelChange)="searchTenant(name.value)" #name="ngModel" ngModel
-                   name="key" id="searchName" class="form-control mr-sm-2" placeholder="Search tenants..." required>
-               </form>
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" routerLink="/tenants" routerLinkActive="active">Tenants</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" routerLink="/utilities" routerLinkActive="active">Utilities</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" (click)="onOpenModal(null, 'add')">Add Tenant<span class="sr-only">(current)</span></a>
+                    </li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0">
+                    <input type="search" (ngModelChange)="searchTenant(name.value)" #name="ngModel" ngModel
+                    name="key" id="searchName" class="form-control mr-sm-2" placeholder="Search tenants..." required>
+                </form>
             </div>
           </nav>
 
@@ -54,7 +65,7 @@
                   <form #editForm="ngForm" (ngSubmit)="onUpdateTenant(editForm.value)">
                     <div class="modal-header justify-content-end border-bottom-0">
                       <button (click)="onUpdateTenant(editForm.value)" data-dismiss="modal" class="btn btn-primary" >Save changes</button>
-                      <button (click)="onDeleteTenant(tenant?.name!)" data-dismiss="modal" class="btn btn-danger" >Delete</button>
+                      <button (click)="onDeleteTenant(tenant?.id!)" data-dismiss="modal" class="btn btn-danger" >Delete</button>
                       <button class="btn btn-secondary tooltips" data-placement="top" data-dismiss="modal" aria-label="Close"><i class="fa fa-times"></i></button>
                         <!-- <button (click)="onUpdateTenant(editForm.value)" type="button" class="btn-edit-icon" data-dismiss="modal" aria-label="Close">
                             <i class="mdi mdi-pencil"></i>
@@ -87,8 +98,9 @@
                                         </div>
 
                                         <div class="card-body">
-                                          <input type="hidden" ngModel="{{ tenant?.name }}" class="form-control" ngModel name="name" id="name" value="{{ tenant?.name }}" />
-                                          <h4 class="py-2">{{ tenant?.name }}</h4>
+                                          <input type="hidden" ngModel="{{ tenant?.id }}" class="form-control" ngModel name="id" id="id" value="{{ tenant?.id }}" />
+                                          <input type="text" ngModel="{{ tenant?.name }}" class="form-control" ngModel name="name" id="name" value="{{ tenant?.name }}" />
+                                          <!-- <h4 class="py-2">{{ tenant?.name }}</h4> -->
                                           <!-- <p>{{ tenant?.email }}</p> -->
                                           <!-- <a class="btn btn-primary btn-pill btn-lg my-4" href="javascript:void(0)">Follow</a> -->
                                         </div>
@@ -199,3 +211,5 @@
         </div>
     </div>
 </div>
+
+<router-outlet></router-outlet>

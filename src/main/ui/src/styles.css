@@ -43,6 +43,10 @@ a{
     text-decoration:none;    
 }
 
+nav a.active {
+    color: #039be5
+}
+
 .contact-list img {
     width:100px;
     height:100px;

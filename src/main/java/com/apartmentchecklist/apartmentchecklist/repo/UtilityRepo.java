@@ -2,17 +2,17 @@ package com.apartmentchecklist.apartmentchecklist.repo;
 
 import java.util.Optional;
 
-import com.apartmentchecklist.apartmentchecklist.model.Tenants;
+import com.apartmentchecklist.apartmentchecklist.model.Utility;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.transaction.annotation.Transactional;
 
-public interface TenantsRepo extends JpaRepository<Tenants, String>{
+public interface UtilityRepo extends JpaRepository<Utility, Long>{
 
     @Transactional
-    void deleteTenantsByName(String name);
+    void deleteUtilityById(Long id);
 
-    Optional<Tenants> findTenantsByName(String name);
+    Optional<Utility> findUtilityById(Long id);
     
 }
     

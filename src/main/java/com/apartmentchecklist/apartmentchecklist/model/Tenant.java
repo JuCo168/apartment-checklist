@@ -4,23 +4,36 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Tenants implements Serializable{
+public class Tenant implements Serializable{
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(nullable = false, updatable = false)
+    private Long id;
     @Column(length = 20, updatable = true)
     private String name;
     private String email;
     private String phone;
     private String imageUrl;
 
-    public Tenants() {}
+    public Tenant() {}
     
-    public Tenants(String name, String email, String phone) {
-    this.name = name;
-    this.email = email;
-    this.phone = phone;
+    public Tenant(String name, String email, String phone) {
+        this.name = name;
+        this.email = email;
+        this.phone = phone;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -57,7 +70,9 @@ public class Tenants implements Serializable{
 
     @Override
     public String toString() {
-        return "Tenants [email=" + email + ", name=" + name + ", phone=" + phone + "]";
+        return "Tenants [email=" + email + ", id=" + id + ", imageUrl=" + imageUrl + ", name=" + name + ", phone="
+                + phone + "]";
     }
 
+    
 }

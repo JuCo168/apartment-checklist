@@ -1,6 +1,6 @@
-import { TenantsService } from './tenants.service';
+import { TenantService } from './tenant.service';
 import { Component, OnInit } from '@angular/core';
-import { Tenants } from './tenants';
+import { Tenant } from './tenant';
 import { HttpErrorResponse } from '@angular/common/http';
 import { NgForm } from '@angular/forms';
 import { keyframes } from '@angular/animations';
@@ -11,18 +11,18 @@ import { keyframes } from '@angular/animations';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit{
-  public tenants!: Tenants[];
-  public tenant!: Tenants | null;
+  public tenants!: Tenant[];
+  public tenant!: Tenant | null;
 
-  constructor(private TenantsService: TenantsService) {}
+  constructor(private TenantService: TenantService) {}
 
   ngOnInit() {
     this.getTenants();
   }
 
   public getTenants(): void {
-    this.TenantsService.getTenants().subscribe(
-      (response: Tenants[]) => {
+    this.TenantService.getTenants().subscribe(
+      (response: Tenant[]) => {
         this.tenants = response;
       },
       (error: HttpErrorResponse) => {
@@ -31,7 +31,7 @@ export class AppComponent implements OnInit{
     )
   }
 
-  public onOpenModal(tenant: Tenants, mode: string): void {
+  public onOpenModal(tenant: Tenant, mode: string): void {
     const container = document.getElementById('tenants-page');
     const button = document.createElement('button');
     this.tenant = tenant;
@@ -60,8 +60,8 @@ export class AppComponent implements OnInit{
 
   public onAddTenant(addForm: NgForm): void {
     document.getElementById('add-tenant-close')?.click();
-    this.TenantsService.addTenant(addForm.value).subscribe(
-      (response: Tenants) => {
+    this.TenantService.addTenant(addForm.value).subscribe(
+      (response: Tenant) => {
         console.log(response);
         this.getTenants();
         addForm.reset();
@@ -73,9 +73,9 @@ export class AppComponent implements OnInit{
     );
   }
 
-  public onUpdateTenant(tenant: Tenants): void {
-    this.TenantsService.updateTenant(tenant).subscribe(
-      (response: Tenants) => {
+  public onUpdateTenant(tenant: Tenant): void {
+    this.TenantService.updateTenant(tenant).subscribe(
+      (response: Tenant) => {
         console.log(response);
         this.getTenants();
       },
@@ -85,8 +85,8 @@ export class AppComponent implements OnInit{
     );
   }
 
-  public onDeleteTenant(name: string): void {
-    this.TenantsService.deleteTenant(name).subscribe(
+  public onDeleteTenant(id: number): void {
+    this.TenantService.deleteTenant(id).subscribe(
       (response: void) => {
         console.log(response);
         this.getTenants();
@@ -98,7 +98,7 @@ export class AppComponent implements OnInit{
   }
 
   public searchTenant(name: string): void {
-    const matches: Tenants[] = [];
+    const matches: Tenant[] = [];
     for(const tenant of this.tenants) {
       if(tenant.name.toLowerCase().indexOf(name.toLowerCase()) !== -1) {
         matches.push(tenant);

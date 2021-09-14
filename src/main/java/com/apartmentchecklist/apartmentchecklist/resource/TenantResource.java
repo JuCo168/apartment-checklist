@@ -1,9 +1,9 @@
-package com.apartmentchecklist.apartmentchecklist;
+package com.apartmentchecklist.apartmentchecklist.resource;
 
 import java.util.List;
 
-import com.apartmentchecklist.apartmentchecklist.model.Tenants;
-import com.apartmentchecklist.apartmentchecklist.service.TenantsService;
+import com.apartmentchecklist.apartmentchecklist.model.Tenant;
+import com.apartmentchecklist.apartmentchecklist.service.TenantService;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,41 +17,41 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/tenants")
-public class TenantsResource {
-    private final TenantsService tenantsService;
+@RequestMapping("/tenant")
+public class TenantResource {
+    private final TenantService tenantsService;
 
-    public TenantsResource(TenantsService tenantsService) {
+    public TenantResource(TenantService tenantsService) {
         this.tenantsService = tenantsService;
     }
 
     @GetMapping("/all")
-    public ResponseEntity<List<Tenants>> getAllTenants() {
-        List<Tenants> tenants = tenantsService.listTenants();
+    public ResponseEntity<List<Tenant>> getAllTenants() {
+        List<Tenant> tenants = tenantsService.listTenants();
         return new ResponseEntity<>(tenants, HttpStatus.OK);
     }
 
-    @GetMapping("/find/{name}")
-    public ResponseEntity<Tenants> getTenantByName(@PathVariable("name") String name) {
-        Tenants tenant = tenantsService.findTenant(name);
+    @GetMapping("/find/{id}")
+    public ResponseEntity<Tenant> getTenantById(@PathVariable("id") Long id) {
+        Tenant tenant = tenantsService.findTenant(id);
         return new ResponseEntity<>(tenant, HttpStatus.OK);
     }
 
     @PostMapping("/add")
-    public ResponseEntity<Tenants> addTenant(@RequestBody Tenants tenant) {
-        Tenants newTenant = tenantsService.addTenant(tenant);
+    public ResponseEntity<Tenant> addTenant(@RequestBody Tenant tenant) {
+        Tenant newTenant = tenantsService.addTenant(tenant);
         return new ResponseEntity<>(newTenant, HttpStatus.CREATED);
     }
     
     @PutMapping("/update")
-    public ResponseEntity<Tenants> updateTenant(@RequestBody Tenants tenant) {
-        Tenants updateTenant = tenantsService.updateTenant(tenant);
+    public ResponseEntity<Tenant> updateTenant(@RequestBody Tenant tenant) {
+        Tenant updateTenant = tenantsService.updateTenant(tenant);
         return new ResponseEntity<>(updateTenant, HttpStatus.CREATED);
     }
 
-    @DeleteMapping("/delete/{name}")
-    public ResponseEntity<?> deleteTenant(@PathVariable("name") String name) {
-        tenantsService.deleteTenant(name); 
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<?> deleteTenant(@PathVariable("id") Long id) {
+        tenantsService.deleteTenant(id); 
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }
