@@ -7,8 +7,6 @@ I'm moving into a new apartment for school and thought it'd be fun to base the p
 
 To let the user list tenants and assign tenants to purchase items. 
 
-I want to include a feature that splits cost among any number of tenants to easily calculate how much each person should pay.
-
 **Resources Used**
 
 [How To Develop and Build Angular App With Java Backend](https://medium.com/bb-tutorials-and-thoughts/how-to-develop-and-build-angular-app-with-java-backend-87fb603c6e17)
@@ -22,3 +20,7 @@ I want to include a feature that splits cost among any number of tenants to easi
 [Spring Boot Full Stack with Angular | Full Course [2021] [NEW]](https://www.youtube.com/watch?v=Gx4iBLKLVHk)
 
 [HTML and CSS taken from bootdey.com](https://www.bootdey.com/snippets/view/Contacts-page)
+
+[Angular Tutorial: Routing and Navigation](https://www.youtube.com/watch?v=Nehk4tBxD4o)
+
+[Angular Router - The Basics and Beyond](https://www.youtube.com/watch?v=Np3ULAMqwNo)
