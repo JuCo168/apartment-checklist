@@ -13,7 +13,7 @@ export class UtilityService {
 
   constructor(private http: HttpClient) { } 
 
-  public getUtilitys(): Observable<Utility[]> {
+  public getUtilities(): Observable<Utility[]> {
     return this.http.get<Utility[]>(`${this.apiServerUrl}/utility/all`);
   }
 

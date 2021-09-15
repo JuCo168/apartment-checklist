@@ -24,3 +24,5 @@ To let the user list tenants and assign tenants to purchase items.
 [Angular Tutorial: Routing and Navigation](https://www.youtube.com/watch?v=Nehk4tBxD4o)
 
 [Angular Router - The Basics and Beyond](https://www.youtube.com/watch?v=Np3ULAMqwNo)
+
+And of course, a lot of Stack Overflow, various documentation, and Googling.

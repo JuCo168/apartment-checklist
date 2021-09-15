@@ -1,16 +1,20 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { TenantListComponent } from './tenant-list/tenant-list.component';
-import { UtilityListComponent } from './utility-list/utility-list.component';
+import { TenantsComponent } from './tenants/tenants.component';
+import { UtilitiesComponent } from './utilities/utilities.component';
+import { FurnitureComponent } from './furniture/furniture.component';
+import { ApplianceComponent } from './appliance/appliance.component';
+import { MiscComponent } from './misc/misc.component';
+
 
 const routes: Routes = [
   {
     path: 'tenants',
-    component: TenantListComponent
+    component: TenantsComponent
   },
   {
     path: 'utilities',
-    component: UtilityListComponent
+    component: UtilitiesComponent
   }
 ];
 
@@ -19,4 +23,4 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
-export const routingComponents = [TenantListComponent, UtilityListComponent];
+export const routingComponents = [TenantsComponent, UtilitiesComponent, FurnitureComponent, ApplianceComponent, MiscComponent];

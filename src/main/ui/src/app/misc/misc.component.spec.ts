@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { UtilityListComponent } from './utility-list.component';
+import { MiscComponent } from './misc.component';
 
-describe('UtilityListComponent', () => {
-  let component: UtilityListComponent;
-  let fixture: ComponentFixture<UtilityListComponent>;
+describe('MiscComponent', () => {
+  let component: MiscComponent;
+  let fixture: ComponentFixture<MiscComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ UtilityListComponent ]
+      declarations: [ MiscComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(UtilityListComponent);
+    fixture = TestBed.createComponent(MiscComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
