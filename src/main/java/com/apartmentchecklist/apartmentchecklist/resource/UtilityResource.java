@@ -19,39 +19,39 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/utility")
 public class UtilityResource {
-    private final UtilityService UtilitysService;
+    private final UtilityService utilityService;
 
-    public UtilityResource(UtilityService UtilitysService) {
-        this.UtilitysService = UtilitysService;
+    public UtilityResource(UtilityService utilityService) {
+        this.utilityService = utilityService;
     }
 
     @GetMapping("/all")
     public ResponseEntity<List<Utility>> getAllUtilitys() {
-        List<Utility> Utilitys = UtilitysService.listUtilities();
-        return new ResponseEntity<>(Utilitys, HttpStatus.OK);
+        List<Utility> Utility = utilityService.listUtilities();
+        return new ResponseEntity<>(Utility, HttpStatus.OK);
     }
 
     @GetMapping("/find/{id}")
     public ResponseEntity<Utility> getUtilityById(@PathVariable("id") Long id) {
-        Utility Utility = UtilitysService.findUtility(id);
+        Utility Utility = utilityService.findUtility(id);
         return new ResponseEntity<>(Utility, HttpStatus.OK);
     }
 
     @PostMapping("/add")
-    public ResponseEntity<Utility> addUtility(@RequestBody Utility Utility) {
-        Utility newUtility = UtilitysService.addUtility(Utility);
+    public ResponseEntity<Utility> addUtility(@RequestBody Utility utility) {
+        Utility newUtility = utilityService.addUtility(utility);
         return new ResponseEntity<>(newUtility, HttpStatus.CREATED);
     }
     
     @PutMapping("/update")
-    public ResponseEntity<Utility> updateUtility(@RequestBody Utility Utility) {
-        Utility updateUtility = UtilitysService.updateUtility(Utility);
+    public ResponseEntity<Utility> updateUtility(@RequestBody Utility utility) {
+        Utility updateUtility = utilityService.updateUtility(utility);
         return new ResponseEntity<>(updateUtility, HttpStatus.CREATED);
     }
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> deleteUtility(@PathVariable("id") Long id) {
-        UtilitysService.deleteUtility(id); 
+        utilityService.deleteUtility(id); 
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }

@@ -11,31 +11,31 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class UtilityService {
-    private final UtilityRepo UtilitysRepo;
+    private final UtilityRepo utilityRepo;
 
     @Autowired
-    public UtilityService(UtilityRepo UtilitysRepo) {
-        this.UtilitysRepo = UtilitysRepo;
+    public UtilityService(UtilityRepo utilityRepo) {
+        this.utilityRepo = utilityRepo;
     }
     
-    public Utility addUtility(Utility Utility) {
-        return UtilitysRepo.save(Utility);
+    public Utility addUtility(Utility utility) {
+        return utilityRepo.save(utility);
     }
 
     public List<Utility> listUtilities() {
-        return UtilitysRepo.findAll();
+        return utilityRepo.findAll();
     }
 
-    public Utility updateUtility(Utility Utility) {
-        return UtilitysRepo.save(Utility);
+    public Utility updateUtility(Utility utility) {
+        return utilityRepo.save(utility);
     }
 
     public Utility findUtility(Long id) {
-        return UtilitysRepo.findUtilityById(id)
+        return utilityRepo.findUtilityById(id)
         .orElseThrow(() -> new UtilityNotFoundException ("Utility " + id + " does not exist"));
     }
 
     public void deleteUtility(Long id) {
-        UtilitysRepo.deleteUtilityById(id);
+        utilityRepo.deleteUtilityById(id);
     }
 }

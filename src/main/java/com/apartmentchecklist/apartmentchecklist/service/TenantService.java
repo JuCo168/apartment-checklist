@@ -11,31 +11,31 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class TenantService {
-    private final TenantRepo tenantsRepo;
+    private final TenantRepo tenantRepo;
 
     @Autowired
-    public TenantService(TenantRepo tenantsRepo) {
-        this.tenantsRepo = tenantsRepo;
+    public TenantService(TenantRepo tenantRepo) {
+        this.tenantRepo = tenantRepo;
     }
     
     public Tenant addTenant(Tenant tenant) {
-        return tenantsRepo.save(tenant);
+        return tenantRepo.save(tenant);
     }
 
     public List<Tenant> listTenants() {
-        return tenantsRepo.findAll();
+        return tenantRepo.findAll();
     }
 
     public Tenant updateTenant(Tenant tenant) {
-        return tenantsRepo.save(tenant);
+        return tenantRepo.save(tenant);
     }
 
     public Tenant findTenant(Long id) {
-        return tenantsRepo.findTenantById(id)
+        return tenantRepo.findTenantById(id)
         .orElseThrow(() -> new TenantNotFoundException ("Tenant " + id + " does not exist"));
     }
 
     public void deleteTenant(Long id) {
-        tenantsRepo.deleteTenantById(id);
+        tenantRepo.deleteTenantById(id);
     }
 }
