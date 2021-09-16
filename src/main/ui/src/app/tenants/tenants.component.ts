@@ -163,19 +163,19 @@ import { Tenant } from './tenant';
   styles: [
   ]
 })
-export class TenantsComponent implements OnInit {
+export class TenantComponent implements OnInit {
 
   public tenants!: Tenant[];
   public tenant!: Tenant | null;
 
-  constructor(private TenantService: TenantService) {}
+  constructor(private tenantService: TenantService) {}
 
   ngOnInit() {
     this.getTenants();
   }
 
   public getTenants(): void {
-    this.TenantService.getTenants().subscribe(
+    this.tenantService.getTenants().subscribe(
       (response: Tenant[]) => {
         this.tenants = response;
       },
@@ -214,7 +214,7 @@ export class TenantsComponent implements OnInit {
 
   public onAddTenant(addForm: NgForm): void {
     document.getElementById('add-tenant-close')?.click();
-    this.TenantService.addTenant(addForm.value).subscribe(
+    this.tenantService.addTenant(addForm.value).subscribe(
       (response: Tenant) => {
         console.log(response);
         this.getTenants();
@@ -228,7 +228,7 @@ export class TenantsComponent implements OnInit {
   }
 
   public onUpdateTenant(tenant: Tenant): void {
-    this.TenantService.updateTenant(tenant).subscribe(
+    this.tenantService.updateTenant(tenant).subscribe(
       (response: Tenant) => {
         console.log(response);
         this.getTenants();
@@ -240,7 +240,7 @@ export class TenantsComponent implements OnInit {
   }
 
   public onDeleteTenant(id: number): void {
-    this.TenantService.deleteTenant(id).subscribe(
+    this.tenantService.deleteTenant(id).subscribe(
       (response: void) => {
         console.log(response);
         this.getTenants();
@@ -251,15 +251,15 @@ export class TenantsComponent implements OnInit {
     );
   }
 
-  public searchTenant(name: string): void {
+  public searchTenant(key: string): void {
     const matches: Tenant[] = [];
     for(const tenant of this.tenants) {
-      if(tenant.name.toLowerCase().indexOf(name.toLowerCase()) !== -1) {
+      if(tenant.name.toLowerCase().indexOf(key.toLowerCase()) !== -1) {
         matches.push(tenant);
       }
     }
     this.tenants = matches;
-    if(matches.length === 0 || !name) {
+    if(!key) {
       this.getTenants();
     }
   }

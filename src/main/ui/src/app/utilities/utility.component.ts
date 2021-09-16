@@ -10,7 +10,7 @@ import { Utility } from './utility';
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/5.3.45/css/materialdesignicons.css" integrity="sha256-NAxhqDvtY0l4xn+YVa6WjAcmd94NNfttjNsDmNatFVc=" crossorigin="anonymous" />
     <div class="container" id="utilities-page">
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-          <a class="navbar-brand" style="color:white;">Utilitys</a>
+          <a class="navbar-brand" style="color:white;">Utilities</a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" 
               aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation"></button>
           <div class="collapse navbar-collapse" id="navbarColor02">
@@ -174,19 +174,19 @@ import { Utility } from './utility';
   styles: [
   ]
 })
-export class UtilitiesComponent implements OnInit {
+export class UtilityComponent implements OnInit {
 
   public utilities!: Utility[];
   public utility!: Utility | null;
 
-  constructor(private UtilityService: UtilityService) {}
+  constructor(private utilityService: UtilityService) {}
 
   ngOnInit() {
-    this.getUtilitys();
+    this.getUtilities();
   }
 
-  public getUtilitys(): void {
-    this.UtilityService.getUtilities().subscribe(
+  public getUtilities(): void {
+    this.utilityService.getUtilities().subscribe(
       (response: Utility[]) => {
         this.utilities = response;
       },
@@ -225,10 +225,10 @@ export class UtilitiesComponent implements OnInit {
 
   public onAddUtility(addForm: NgForm): void {
     document.getElementById('add-utility-close')?.click();
-    this.UtilityService.addUtility(addForm.value).subscribe(
+    this.utilityService.addUtility(addForm.value).subscribe(
       (response: Utility) => {
         console.log(response);
-        this.getUtilitys();
+        this.getUtilities();
         addForm.reset();
       },
       (error: HttpErrorResponse) => {
@@ -239,10 +239,10 @@ export class UtilitiesComponent implements OnInit {
   }
 
   public onUpdateUtility(utility: Utility): void {
-    this.UtilityService.updateUtility(utility).subscribe(
+    this.utilityService.updateUtility(utility).subscribe(
       (response: Utility) => {
         console.log(response);
-        this.getUtilitys();
+        this.getUtilities();
       },
       (error: HttpErrorResponse) => {
         alert(error.message )
@@ -251,10 +251,10 @@ export class UtilitiesComponent implements OnInit {
   }
 
   public onDeleteUtility(id: number): void {
-    this.UtilityService.deleteUtility(id).subscribe(
+    this.utilityService.deleteUtility(id).subscribe(
       (response: void) => {
         console.log(response);
-        this.getUtilitys();
+        this.getUtilities();
       },
       (error: HttpErrorResponse) => {
         alert(error.message )
@@ -271,8 +271,8 @@ export class UtilitiesComponent implements OnInit {
       }
     }
     this.utilities = matches;
-    if(matches.length === 0 || !key) {
-      this.getUtilitys();
+    if(!key) {
+      this.getUtilities();
     }
   }
 
