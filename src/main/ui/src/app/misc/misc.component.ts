@@ -1,3 +1,4 @@
+import { HomeService } from './../home.service';
 import { MiscService } from './misc.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
@@ -187,10 +188,16 @@ export class MiscComponent implements OnInit {
   public miscList!: Misc[];
   public misc!: Misc | null;
 
-  constructor(private miscService: MiscService) {}
+  constructor(private miscService: MiscService,
+    private homeService: HomeService) {}
 
   ngOnInit() {
     this.getMisc();
+    this.homeService.displayHome = false;
+  }
+
+  ngOnDestroy() {
+    this.homeService.displayHome = true;
   }
 
   public getMisc(): void {

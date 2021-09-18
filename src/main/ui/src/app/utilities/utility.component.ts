@@ -1,3 +1,4 @@
+import { HomeService } from './../home.service';
 import { UtilityService } from './utility.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
@@ -179,12 +180,18 @@ export class UtilityComponent implements OnInit {
   public utilities!: Utility[];
   public utility!: Utility | null;
 
-  constructor(private utilityService: UtilityService) {}
+  constructor(private utilityService: UtilityService,
+    private homeService: HomeService) {}
 
   ngOnInit() {
     this.getUtilities();
+    this.homeService.displayHome = false;
   }
 
+  ngOnDestroy() {
+    this.homeService.displayHome = true;
+  }
+  
   public getUtilities(): void {
     this.utilityService.getUtilities().subscribe(
       (response: Utility[]) => {

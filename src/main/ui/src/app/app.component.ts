@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpErrorResponse } from '@angular/common/http';
+import { HttpErrorResponse, HttpClient } from '@angular/common/http';
 import { NgForm } from '@angular/forms';
+import { HomeService } from './home.service';
 
 @Component({
   selector: 'app-root',
@@ -9,8 +10,14 @@ import { NgForm } from '@angular/forms';
 })
 export class AppComponent implements OnInit{
 
-  constructor() {}
+  public displayHome!: boolean;
 
-  ngOnInit(): void {
+  constructor(private homeService: HomeService) {
+  }
+
+  ngOnInit(): void {}
+
+  ngDoCheck(): void {
+    this.displayHome = this.homeService.displayHome;
   }
 }

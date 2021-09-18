@@ -1,3 +1,4 @@
+import { HomeService } from './../home.service';
 import { ApplianceService } from './appliance.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
@@ -186,10 +187,16 @@ export class ApplianceComponent implements OnInit {
   public appliances!: Appliance[];
   public appliance!: Appliance | null;
 
-  constructor(private applianceService: ApplianceService) {}
+  constructor(private applianceService: ApplianceService,
+    private homeService: HomeService) {}
 
   ngOnInit() {
     this.getAppliances();
+    this.homeService.displayHome = false;
+  }
+
+  ngOnDestroy() {
+    this.homeService.displayHome = true;
   }
 
   public getAppliances(): void {

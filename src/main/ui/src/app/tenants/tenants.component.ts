@@ -1,3 +1,4 @@
+import { HomeService } from './../home.service';
 import { TenantService } from './tenant.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
@@ -164,14 +165,20 @@ import { Tenant } from './tenant';
   ]
 })
 export class TenantComponent implements OnInit {
-
+ 
   public tenants!: Tenant[];
   public tenant!: Tenant | null;
 
-  constructor(private tenantService: TenantService) {}
+  constructor(private tenantService: TenantService,
+    private homeService: HomeService) {}
 
   ngOnInit() {
     this.getTenants();
+    this.homeService.displayHome = false;
+  }
+
+  ngOnDestroy() {
+    this.homeService.displayHome = true;
   }
 
   public getTenants(): void {

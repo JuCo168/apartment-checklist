@@ -1,3 +1,4 @@
+import { HomeService } from './../home.service';
 import { FurnitureService } from './furniture.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
@@ -186,10 +187,16 @@ export class FurnitureComponent implements OnInit {
   public furnitureList!: Furniture[];
   public furniture!: Furniture | null;
 
-  constructor(private furnitureService: FurnitureService) {}
+  constructor(private furnitureService: FurnitureService,
+    private homeService: HomeService) {}
 
   ngOnInit() {
     this.getFurniture();
+    this.homeService.displayHome = false;
+  }
+
+  ngOnDestroy() {
+    this.homeService.displayHome = true;
   }
 
   public getFurniture(): void {

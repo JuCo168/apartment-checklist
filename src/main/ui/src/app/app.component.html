@@ -31,17 +31,13 @@
                     <a class="nav-link" routerLink="/misc" routerLinkActive="active">Misc.</a>
                 </li>
             </ul>
-            <!-- <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" (click)="onOpenModal(null, 'add')">Add Tenant<span class="sr-only">(current)</span></a>
-                </li>
-            </ul> -->
-            <!-- <form class="form-inline my-2 my-lg-0"> -->
-            <!-- <form class="form-inline ml-auto">
-                <input type="search" (ngModelChange)="searchTenant(name.value)" #name="ngModel" ngModel
-                    name="key" id="searchName" class="form-control mr-sm-2" placeholder="Search tenants..." required>
-            </form> -->
         </div>
     </nav>
+    <main id="home" class="text-center" *ngIf="displayHome">
+        <div class="mask">
+            <h1>Apartment Checklist Tool</h1>
+            <p>A simple tool that allows you to record tenant information, organize move-in, and manage costs all in one place.</p>
+        </div>
+    </main>
 </div>
 <router-outlet></router-outlet>

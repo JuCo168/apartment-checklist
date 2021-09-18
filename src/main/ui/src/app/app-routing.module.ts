@@ -5,6 +5,7 @@ import { UtilityComponent } from './utilities/utility.component';
 import { FurnitureComponent } from './furniture/furniture.component';
 import { ApplianceComponent } from './appliance/appliance.component';
 import { MiscComponent } from './misc/misc.component';
+import { AppComponent } from './app.component';
 
 
 const routes: Routes = [
@@ -35,4 +36,4 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
-export const routingComponents = [TenantComponent, UtilityComponent, FurnitureComponent, ApplianceComponent, MiscComponent];
+export const routingComponents = [AppComponent, TenantComponent, UtilityComponent, FurnitureComponent, ApplianceComponent, MiscComponent];
